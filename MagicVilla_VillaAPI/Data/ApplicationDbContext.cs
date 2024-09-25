@@ -9,6 +9,6 @@ namespace MagicVilla_VillaAPI.Data
         {
         }
 
-        public DbSet<Villa> Villas { get; set; }
+        public DbSet<Villa> Villa { get; set; }
     }
 }

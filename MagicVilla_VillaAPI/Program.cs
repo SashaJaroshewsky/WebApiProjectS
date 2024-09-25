@@ -12,16 +12,21 @@ namespace MagicVilla_VillaAPI
 
             // Add services to the container.
 
-
+            //Add Db connectoin
             builder.Services.AddDbContext<ApplicationDbContext>(option => { 
                 option.UseSqlServer(
                     builder.Configuration.GetConnectionString("DefaultSQLConection")
                 ); 
             });
-
+            //
 
 
             builder.Services.AddControllers();
+
+            //Add Razor
+            builder.Services.AddRazorPages();
+            //
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -34,13 +39,22 @@ namespace MagicVilla_VillaAPI
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            //Add
+           app.UseRouting();
+            //
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
+            
 
             app.MapControllers();
+
+            //Add
+            app.UseEndpoints(endpoints => {
+                endpoints.MapRazorPages();
+                endpoints.MapControllers();
+            });
+            //
 
             app.Run();
         }
