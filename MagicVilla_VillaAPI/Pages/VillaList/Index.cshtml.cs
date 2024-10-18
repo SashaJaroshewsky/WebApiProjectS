@@ -9,6 +9,7 @@ namespace MagicVilla_VillaAPI.Pages.VillaList
     public class IndexModel : PageModel
     {
         private readonly ApplicationDbContext _db;
+   
 
         public IndexModel(ApplicationDbContext db)
         {

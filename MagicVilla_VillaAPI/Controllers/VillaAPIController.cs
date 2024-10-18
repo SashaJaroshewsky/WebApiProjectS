@@ -11,6 +11,15 @@ namespace MagicVilla_VillaAPI.Controllers
     [ApiController]
     public class VillaAPIController : ControllerBase
     {
+
+
+        private readonly ApplicationDbContext _db;
+
+
+        public VillaAPIController(ApplicationDbContext db)
+        {
+            _db = db;
+        }
         // GET: api/<VillaAPIController>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -30,7 +39,8 @@ namespace MagicVilla_VillaAPI.Controllers
             {
                 return BadRequest();
             }
-            var villa = VillaStore.villaDTOs.FirstOrDefault(u => u.Id == id);
+            //var villa = VillaStore.villaDTOs.FirstOrDefault(u => u.Id == id);
+            var villa = _db.Villa.FirstOrDefault(u => u.Id == id);
             if (villa == null)
             {
                 return BadRequest();
@@ -74,9 +84,6 @@ namespace MagicVilla_VillaAPI.Controllers
         //}
 
         // DELETE api/<VillaAPIController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+
     }
 }
